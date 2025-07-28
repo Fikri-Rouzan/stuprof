@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --font-outfit: "Outfit";
+  --color-primary: #a16ee0;
+  --color-secondary: #b185e8;
+}
+
+html {
+  font-family: var(--font-outfit);
+}
