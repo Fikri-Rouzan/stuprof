@@ -51,22 +51,34 @@ meRoutes.put("/me", async (c) => {
     const payload = c.get("jwtPayload") as JWTPayload;
     const body = await c.req.json();
 
-    // fields that cannot be changed by students
-    delete body.nim;
-    delete body.id;
+    const dataToUpdate: {
+      name?: string;
+      dob?: Date;
+      phone?: string;
+      address?: string;
+      hobby?: string;
+      password?: string;
+    } = {};
+
+    if (body.name) dataToUpdate.name = body.name;
+    if (body.dob) dataToUpdate.dob = new Date(body.dob);
+    if (body.phone) dataToUpdate.phone = body.phone;
+    if (body.address) dataToUpdate.address = body.address;
+    if (body.hobby) dataToUpdate.hobby = body.hobby;
 
     if (body.password) {
-      body.password = await bcrypt.hash(body.password, 10);
+      dataToUpdate.password = await bcrypt.hash(body.password, 10);
     }
 
     const updatedStudent = await prisma.student.update({
       where: { id: payload.id },
-      data: body,
+      data: dataToUpdate,
       select: studentPublicSelect,
     });
 
     return c.json(updatedStudent);
   } catch (err: any) {
+    console.error("update profile error", err);
     return c.json(
       { message: "Failed to update profile", error: err.message },
       500
@@ -129,17 +141,36 @@ adminRoutes.put("/:id", async (c) => {
     const { id } = c.req.param();
     const body = await c.req.json();
 
+    const dataToUpdate: {
+      nim?: string;
+      name?: string;
+      dob?: Date;
+      phone?: string;
+      address?: string;
+      hobby?: string;
+      password?: string;
+    } = {};
+
+    if (body.nim) dataToUpdate.nim = body.nim;
+    if (body.name) dataToUpdate.name = body.name;
+    if (body.dob) dataToUpdate.dob = new Date(body.dob);
+    if (body.phone) dataToUpdate.phone = body.phone;
+    if (body.address) dataToUpdate.address = body.address;
+    if (body.hobby) dataToUpdate.hobby = body.hobby;
+
     if (body.password) {
-      body.password = await bcrypt.hash(body.password, 10);
+      dataToUpdate.password = await bcrypt.hash(body.password, 10);
     }
 
     const updatedStudent = await prisma.student.update({
       where: { id },
-      data: body,
+      data: dataToUpdate,
       select: studentPublicSelect,
     });
+
     return c.json(updatedStudent);
   } catch (err: any) {
+    console.error("Admin update student error", err);
     return c.json(
       { message: "Student not found or failed to update", error: err.message },
       500

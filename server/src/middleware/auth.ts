@@ -10,7 +10,7 @@ export type JWTPayload = {
 // JWT token
 export const authMiddleware = createMiddleware(async (c, next) => {
   const jwtMiddleware = jwt({
-    secret: c.env.JWT_SECRET,
+    secret: process.env.JWT_SECRET!,
   });
   return jwtMiddleware(c, next);
 });

@@ -26,14 +26,17 @@ historyRoutes.get("/", async (c) => {
   return c.json(records);
 });
 
-// Deletes all record history
-historyRoutes.delete("/", async (c) => {
+// Delete history records by ID
+historyRoutes.delete("/:id", async (c) => {
   try {
-    await prisma.history.deleteMany({});
-    return c.json({ message: "All history has been cleared" });
+    const { id } = c.req.param();
+    await prisma.history.delete({
+      where: { id },
+    });
+    return c.json({ message: "History record deleted successfully" });
   } catch (err: any) {
     return c.json(
-      { message: "Failed to clear history", error: err.message },
+      { message: "Failed to delete history record", error: err.message },
       500
     );
   }
