@@ -6,6 +6,8 @@ import StudentTable from "./StudentTable";
 import StudentInfoModal from "./StudentInfoModal";
 import StudentFormModal from "./StudentFormModal";
 import { FaSearch } from "react-icons/fa";
+import { usePagination } from "../../hooks/usePagination";
+import PaginationControls from "../common/PaginationControls";
 
 type StudentFormData = Partial<
   Omit<Student, "id" | "createdAt" | "updatedAt">
@@ -18,6 +20,15 @@ export default function StudentData() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [infoStudent, setInfoStudent] = useState<Student | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const {
+    currentData,
+    currentPage,
+    totalPages,
+    itemsPerPage,
+    goToPage,
+    setItemsPerPage,
+  } = usePagination(filteredStudents, 5);
 
   const fetchStudents = useCallback(async () => {
     const token = localStorage.getItem("token");
@@ -143,13 +154,13 @@ export default function StudentData() {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value.toLowerCase();
-    setFilteredStudents(
-      students.filter(
-        (s) =>
-          s.name.toLowerCase().includes(query) ||
-          s.nim.toLowerCase().includes(query)
-      )
+    const filtered = students.filter(
+      (s) =>
+        s.name.toLowerCase().includes(query) ||
+        s.nim.toLowerCase().includes(query)
     );
+    setFilteredStudents(filtered);
+    goToPage(1);
   };
 
   return (
@@ -182,10 +193,19 @@ export default function StudentData() {
 
       <div>
         <StudentTable
-          students={filteredStudents}
+          students={currentData}
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
           handleEdit={handleOpenEditModal}
           handleInfo={setInfoStudent}
           handleDelete={handleDelete}
+        />
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          itemsPerPage={itemsPerPage}
+          goToPage={goToPage}
+          setItemsPerPage={setItemsPerPage}
         />
       </div>
 

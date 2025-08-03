@@ -1,7 +1,13 @@
 import Swal from "sweetalert2";
-import { FaUsers, FaHistory, FaSignOutAlt, FaTimes } from "react-icons/fa";
+import {
+  FaUsers,
+  FaHistory,
+  FaSignOutAlt,
+  FaTimes,
+  FaQuestionCircle,
+} from "react-icons/fa";
 
-type AdminTab = "students" | "history";
+type AdminTab = "students" | "history" | "guide";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -81,6 +87,14 @@ export default function Sidebar({
         </NavButton>
       </nav>
       <div className="mt-auto border-t border-gray-50">
+        <NavButton
+          tab="guide"
+          icon={<FaQuestionCircle />}
+          activeColor="bg-gray-500"
+          hoverColor="hover:bg-gray-500"
+        >
+          Guide
+        </NavButton>
         <button
           onClick={confirmLogout}
           className="flex items-center w-full px-6 py-3 hover:bg-red-500 cursor-pointer transition-colors duration-300"

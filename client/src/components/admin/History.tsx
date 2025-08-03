@@ -3,9 +3,20 @@ import Swal from "sweetalert2";
 import api from "../../api";
 import type { HistoryRecord } from "../../types";
 import { FaTrashAlt } from "react-icons/fa";
+import { usePagination } from "../../hooks/usePagination";
+import PaginationControls from "../common/PaginationControls";
 
 export default function History() {
   const [records, setRecords] = useState<HistoryRecord[]>([]);
+
+  const {
+    currentData,
+    currentPage,
+    totalPages,
+    itemsPerPage,
+    goToPage,
+    setItemsPerPage,
+  } = usePagination(records, 5);
 
   const fetchHistory = useCallback(async () => {
     const token = localStorage.getItem("token");
@@ -72,6 +83,7 @@ export default function History() {
         <table className="min-w-full">
           <thead className="bg-primary text-white text-lg">
             <tr>
+              <th className="px-4 py-3 text-center w-20">No</th>
               <th className="px-4 py-3 text-left">NIM</th>
               <th className="px-4 py-3 text-left">Full Name</th>
               <th className="px-4 py-3 text-left">Last Login</th>
@@ -80,11 +92,14 @@ export default function History() {
             </tr>
           </thead>
           <tbody>
-            {records.map((rec) => (
+            {currentData.map((rec, index) => (
               <tr
                 key={rec.id}
                 className="border-b bg-gray-100 hover:bg-secondary/10 transition-colors duration-300"
               >
+                <td className="px-4 py-3 text-center">
+                  {(currentPage - 1) * itemsPerPage + index + 1}
+                </td>
                 <td className="px-4 py-3">{rec.student?.nim || "-"}</td>
                 <td className="px-4 py-3">{rec.student?.name || "-"}</td>
                 <td className="px-4 py-3">
@@ -111,6 +126,13 @@ export default function History() {
           </tbody>
         </table>
       </div>
+      <PaginationControls
+        currentPage={currentPage}
+        totalPages={totalPages}
+        itemsPerPage={itemsPerPage}
+        goToPage={goToPage}
+        setItemsPerPage={setItemsPerPage}
+      />
     </div>
   );
 }

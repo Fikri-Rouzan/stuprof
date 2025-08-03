@@ -5,8 +5,9 @@ import { FaBars } from "react-icons/fa";
 import Sidebar from "../components/admin/Sidebar";
 import StudentData from "../components/admin/StudentData";
 import History from "../components/admin/History";
+import Guide from "../components/admin/Guide";
 
-type AdminTab = "students" | "history";
+type AdminTab = "students" | "history" | "guide";
 
 export default function AdminDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -29,10 +30,23 @@ export default function AdminDashboard() {
     navigate("/login", { replace: true });
   };
 
+  const getTitle = () => {
+    switch (activeTab) {
+      case "history":
+        return "Login History";
+      case "guide":
+        return "Guide";
+      default:
+        return "Student Data";
+    }
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case "history":
         return <History />;
+      case "guide":
+        return <Guide />;
       case "students":
       default:
         return <StudentData />;
@@ -58,7 +72,7 @@ export default function AdminDashboard() {
             <FaBars className="h-6 w-6" />
           </button>
           <h1 className="text-2xl font-semibold text-gray-600 pb-2">
-            {activeTab === "students" ? "Student Data" : "Login History"}
+            {getTitle()}
           </h1>
           <div className="w-6" />
         </header>
