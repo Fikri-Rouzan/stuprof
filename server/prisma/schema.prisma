@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../src/generated"
 }
 
 datasource db {
@@ -16,16 +17,16 @@ model Admin {
 }
 
 model Student {
-  id        String    @id @default(cuid())
-  nim       String    @unique
+  id        String   @id @default(cuid())
+  nim       String   @unique
   name      String
   password  String
   dob       DateTime
   phone     String?
   address   String?
   hobby     String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   histories History[]
 }
