@@ -8,13 +8,13 @@ A comprehensive full-stack student profile management system designed to streaml
 
 ## 🛠️ Tech Stack
 
-| Category                    | Technologies Used                                                                                             |
-| :-------------------------- | :------------------------------------------------------------------------------------------------------------ |
-| 🌐 **Programming Language** | `TypeScript`                                                                                                  |
-| 🧩 **Frameworks**           | `Hono`, `Tailwind CSS`                                                                                        |
-| ⚛️ **Libraries**            | `dotenv`, `Prisma`, `tsx`, `bcrypt.js`, `React`, `Axios`, `React Router`, `MUI`, `SweetAlert2`, `React Icons` |
-| 🗄️ **Database**             | `Neon (PostgreSQL)`                                                                                           |
-| ⚡ **Tool**                 | `Vite`                                                                                                        |
+| Category                    | Technologies Used                                                                                                |
+| :-------------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| 🌐 **Programming Language** | `TypeScript`                                                                                                     |
+| 🧩 **Frameworks**           | `Hono`, `Tailwind CSS`                                                                                           |
+| ⚛️ **Libraries**            | `dotenv`, `Prisma`, `tsx`, `bcrypt.js`, `React`, `Axios`, `React Router`,<br>`MUI`, `SweetAlert2`, `React Icons` |
+| 🗄️ **Database**             | `Neon (PostgreSQL)`                                                                                              |
+| ⚡ **Tool**                 | `Vite`                                                                                                           |
 
 ---
 
