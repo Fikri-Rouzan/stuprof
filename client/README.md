@@ -49,7 +49,7 @@ cp .env.example .env
 - Open the `.env` file and configure the following variable
 
   ```env
-  VITE_API_URL="YOUR_API_URL"
+  VITE_API_URL="YOUR_API_URL/api"
   ```
 
 5. **Run the Program**
