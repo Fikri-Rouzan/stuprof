@@ -12,7 +12,7 @@ The user interface component of the student profile application, providing dedic
 | :-------------------------- | :-------------------------------------------------------------------- |
 | 🌐 **Programming Language** | `TypeScript`                                                          |
 | 🧩 **Framework**            | `Tailwind CSS`                                                        |
-| ⚛️ **Libraries**            | `React`, `Axios`, `React Router`, `MUI`, `SweetAlert2`, `React Icons` |
+| ⚛️ **Libraries**            | `React`, `axios`, `React Router`, `MUI`, `sweetalert2`, `React Icons` |
 | ⚡ **Tool**                 | `Vite`                                                                |
 
 ---

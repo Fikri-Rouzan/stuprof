@@ -12,7 +12,7 @@ A comprehensive full-stack student profile management system designed to streaml
 | :-------------------------- | :--------------------------------------------------------------------------------------------------------------- |
 | 🌐 **Programming Language** | `TypeScript`                                                                                                     |
 | 🧩 **Frameworks**           | `Hono`, `Tailwind CSS`                                                                                           |
-| ⚛️ **Libraries**            | `dotenv`, `Prisma`, `tsx`, `bcrypt.js`, `React`, `Axios`, `React Router`,<br>`MUI`, `SweetAlert2`, `React Icons` |
+| ⚛️ **Libraries**            | `dotenv`, `Prisma`, `tsx`, `bcrypt.js`, `React`, `axios`, `React Router`,<br>`MUI`, `sweetalert2`, `React Icons` |
 | 🗄️ **Database**             | `Neon (PostgreSQL)`                                                                                              |
 | ⚡ **Tool**                 | `Vite`                                                                                                           |
 
